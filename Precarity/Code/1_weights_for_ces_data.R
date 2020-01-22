@@ -40,4 +40,5 @@ education_employment %>%
 #EMPLOYMENT BY AGE
 education_employment %>% 
   filter(GEO=="Canada", Sex=="Both sexes", Degree=="Total, all education levels",Age!="15 years and over", Age!="25 years and over", Age!="45 years and over", Age!="55 years and over") %>% 
+  select(GEO, Sex,Age, Degree, VALUE, Year, LFS) %>% 
   write.csv(file=here("Precarity", "Data", "age_employment.csv"))
