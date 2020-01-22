@@ -10,14 +10,18 @@ get_cansim_table_overview('14-10-0020-01')
 education_employment<-get_cansim('14-10-0020-01') 
 #Glimpse
 glimpse(education_employment)
+
 #Create a master data framne with some basic variable renames for ease and filter out all other than employment rate and 2019
 education_employment %>% 
   rename(., "Year"="REF_DATE", "Degree"="Educational attainment",  "LFS"="Labour force characteristics", "Age"="Age group") %>% 
-  filter(.,Year==2019, LFS=="Employment rate")-> education_employment
-
+  filter(.,Year==2019, LFS=="Employment")-> education_employment
+education_employment %>% 
+  View()
+table(education_employment$LFS)
+glimpse(education_employment)
 #Find employment rate for level of degree attainment. 
 education_employment %>% 
-filter(Degree!="Total, all education levels", Degree!="Bachelor's degree", Degree!="Above bachelor\'s degree", LFS=="Employment rate", Sex=="Both sexes", GEO=='Canada', Age=="15 years and over") %>% 
+filter(Degree!="Total, all education levels", Degree!="Bachelor's degree", Degree!="Above bachelor\'s degree", LFS=="Employment", Sex=="Both sexes", GEO=='Canada', Age=="15 years and over") %>% 
   select(Degree, LFS,VALUE) %>% 
   write.csv(file=here("Precarity", "Data", "education_employment.csv"))
 
