@@ -23,22 +23,31 @@ glimpse(education_employment)
 education_employment %>% 
 filter(Degree!="Total, all education levels", Degree!="Bachelor's degree", Degree!="Above bachelor\'s degree", LFS=="Employment", Sex=="Both sexes", GEO=='Canada', Age=="15 years and over") %>% 
   select(Degree, LFS,VALUE) %>% 
+    mutate(pct=(VALUE/sum(VALUE))*100) %>% 
   write.csv(file=here("Precarity", "Data", "education_employment.csv"))
 
 #EMPLOYMENT BY PROVINCE
 education_employment %>% 
   filter(GEO!="Canada", Sex=="Both sexes", Age=="15 years and over", Degree=="Total, all education levels") %>% 
   select(GEO, Sex, Age, Degree, VALUE, Year, LFS) %>% 
+  mutate(pct=(VALUE/sum(VALUE))*100) %>% 
 write.csv(file=here("Precarity", "Data", "province_employment.csv"))
 
 #employment by sex
 education_employment %>% 
   filter(GEO=="Canada", Sex!="Both sexes", Age=="15 years and over", Degree=="Total, all education levels") %>% 
   select(GEO, Sex, Age, Degree, VALUE, Year, LFS) %>% 
+  mutate(pct=(VALUE/sum(VALUE))*100) %>% 
   write.csv(file=here("Precarity", "Data", "sex_employment.csv"))
 
 #EMPLOYMENT BY AGE
 education_employment %>% 
-  filter(GEO=="Canada", Sex=="Both sexes", Degree=="Total, all education levels",Age!="15 years and over", Age!="25 years and over", Age!="45 years and over", Age!="55 years and over") %>% 
+  filter(GEO=="Canada") %>% 
+  select(Age) %>% 
+  table()
+education_employment %>% 
+  filter(GEO=="Canada", Sex=="Both sexes", Degree=="Total, all education levels",Age=="15 to 24 years"| Age=="25 to 54 years"| Age=="55 to 64 years"|Age=="65 years and over") %>%
   select(GEO, Sex,Age, Degree, VALUE, Year, LFS) %>% 
+  mutate(pct=(VALUE/sum(VALUE))*100) %>% 
   write.csv(file=here("Precarity", "Data", "age_employment.csv"))
+

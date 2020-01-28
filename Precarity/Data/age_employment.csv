@@ -1,6 +1,5 @@
-"","GEO","Sex","Age","Degree","VALUE","Year","LFS"
-"1","Canada","Both sexes","15 to 24 years","Total, all education levels",2516.7,"2019","Employment"
-"2","Canada","Both sexes","25 to 44 years","Total, all education levels",8393.5,"2019","Employment"
-"3","Canada","Both sexes","25 to 54 years","Total, all education levels",12382.1,"2019","Employment"
-"4","Canada","Both sexes","55 to 64 years","Total, all education levels",3249.2,"2019","Employment"
-"5","Canada","Both sexes","65 years and over","Total, all education levels",907.7,"2019","Employment"
+"","GEO","Sex","Age","Degree","VALUE","Year","LFS","pct"
+"1","Canada","Both sexes","15 to 24 years","Total, all education levels",2516.7,"2019","Employment",13.2070718997465
+"2","Canada","Both sexes","25 to 54 years","Total, all education levels",12382.1,"2019","Employment",64.9784578892405
+"3","Canada","Both sexes","55 to 64 years","Total, all education levels",3249.2,"2019","Employment",17.0510660852133
+"4","Canada","Both sexes","65 years and over","Total, all education levels",907.7,"2019","Employment",4.76340412579963
