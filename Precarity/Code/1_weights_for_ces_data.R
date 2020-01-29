@@ -41,13 +41,26 @@ education_employment %>%
   write.csv(file=here("Precarity", "Data", "sex_employment.csv"))
 
 #EMPLOYMENT BY AGE
-education_employment %>% 
-  filter(GEO=="Canada") %>% 
-  select(Age) %>% 
-  table()
-education_employment %>% 
-  filter(GEO=="Canada", Sex=="Both sexes", Degree=="Total, all education levels",Age=="15 to 24 years"| Age=="25 to 54 years"| Age=="55 to 64 years"|Age=="65 years and over") %>%
-  select(GEO, Sex,Age, Degree, VALUE, Year, LFS) %>% 
+#Get new cansim table for five year age groups
+library(cansim)
+library(tidyverse)
+age_employment<-get_cansim('14-10-0327-01')
+age_employment %>% 
+  rename(., "Year"="REF_DATE",  "LFS"="Labour force characteristics", "Age"="Age group") %>% 
+  filter(.,Year==2019, LFS=="Employment") %>% 
+  filter(GEO=="Canada", Sex=="Both sexes") %>% 
+  filter(Age=="15 to 19 years" | 
+           Age=="20 to 24 years"| 
+           Age=="25 to 29 years"|
+           Age=="30 to 34 years"| 
+           Age=="35 to 39 years"|
+           Age=="40 to 44 years"|
+           Age=='45 to 49 years'|
+           Age=="50 to 54 years"|
+         Age=="55 to 59 years"|
+           Age=="60 to 64 years"|
+           Age=="65 to 69 years"|
+           Age=="70 years and over") %>% 
   mutate(pct=(VALUE/sum(VALUE))*100) %>% 
   write.csv(file=here("Precarity", "Data", "age_employment.csv"))
 
