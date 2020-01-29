@@ -4,7 +4,7 @@ library(car)
 library(here)
 #comment out if you are not simon iss
 #options(cansim.cache_path="~/skiss/cansim")
-
+#We use Cansim Table 14-10-0020-01 for three of the four variables
 get_cansim_table_overview('14-10-0020-01') 
 #Get Table
 education_employment<-get_cansim('14-10-0020-01') 
@@ -41,7 +41,7 @@ education_employment %>%
   write.csv(file=here("Precarity", "Data", "sex_employment.csv"))
 
 #EMPLOYMENT BY AGE
-#Get new cansim table for five year age groups
+#Get new cansim table Table 14-10-0327-01 for five year age groups
 library(cansim)
 library(tidyverse)
 age_employment<-get_cansim('14-10-0327-01')
