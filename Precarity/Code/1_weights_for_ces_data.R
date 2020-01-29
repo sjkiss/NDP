@@ -62,5 +62,6 @@ age_employment %>%
            Age=="65 to 69 years"|
            Age=="70 years and over") %>% 
   mutate(pct=(VALUE/sum(VALUE))*100) %>% 
+select(GEO, Sex, Age, LFS,VALUE, pct) %>% 
   write.csv(file=here("Precarity", "Data", "age_employment.csv"))
 
